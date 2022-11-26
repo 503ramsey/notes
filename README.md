@@ -1,2 +1,1 @@
-# notes
-for jogging memory
+For jogging memory

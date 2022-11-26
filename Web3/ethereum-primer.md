@@ -1,0 +1,116 @@
+# Foundational Topics
+DISCLAIMER: These notes are intended to supply information for beginning smart contract development on the Ethereum blockchain. The following   is a reduced and re-organized version of what exists at [Ethereum.org](https://ethereum.org)
+
+For Perspectives, Whys, and Predictions read: [Short Articles by Chris Dixon on Web3](https://cdixon.mirror.xyz/TNOgrQGh_xUnBVO7wuYB-NMajrc3_0zN20-XznJRKlk)
+
+- General Information
+	- Blockchain
+		- a public database that is updated and shared across many computers in a network
+		- Components
+			- block
+				- a logical unit of stored data and state
+			- chain (of blocks)
+				- each block cryptographically references its parent
+				- data in a block cannot change without the consensus of the entire network
+			- nodes
+				- machines running software that connect to a network
+	- Wallet
+		- an interface or application that lets you interact with your Ethereum account
+		- facilitates interaction with cryptocurrency
+- Ethereum
+	- a blockchain with a shared virtual machine state
+	- Ethereum Virtual Machine (EVM)
+		- pool of computing power
+		- this shared pool is finite, so Ethereum needs a mechanism to determine who gets to use it
+		- requesting runtime on the EVM has gas costs 
+			- costs depend on the resources required to do the computation 
+			- some Math operations are more expensive than others
+	- consensus mechanism
+		- proof-of-stake
+			- anyone who wants to add new blocks to the chain must stake at least 32 ETH into the deposit contract and run validator software
+	- account
+		- a keypair with access to currency that can interact with the EVM
+		- Types of accounts
+			- Externally-Owned accounts
+				- users, companies, or any other entity with a private key
+				- to create an account most libraries will generate you a random private key
+			- Smart Contracts (a dapp's backend)
+				- like a sort of vending machine: a script that, when called with certain parameters, performs some actions or computation if certain conditions are satisfied
+				- any user can call the smart contract to execute its code for a fee paid to the network
+				- Once smart contracts are deployed on the network you can't change them
+	- Decentralized Applications (dapps)
+		- an application built on a decentralized network that combines a smart contract and a frontend user interface written in any language
+			- frontend can be hosted on decentralized storage such as IPFS
+			- FOSS tool for creating dapp frontends: https://oneclickdapp.com
+		- has its backend code running on a decentralized peer-to-peer network
+	- Ether (ETH): the cryptocurrency of Ethereum
+		- provides an economic incentive for participants
+		- required to validate and propose blocks on Mainnet
+		- Minting (creating)
+			- minted as a reward for each block proposed and at every epoch checkpoint for other validator activity related to reaching consensus
+		- Burning (destroying)
+			- occurs in every transaction on Ethereum. When users pay for their transactions, a base gas fee, set by the network according to transactional demand, gets destroyed
+		- Denominations
+			- Wei ("way")
+				- the smallest possible amount of ether
+			- Gwei ("giga-way")
+				- often used to describe gas costs on Ethereum 
+				- (price of 1 Eth) x 10-9
+	- Transactions
+		- Types: 
+			- Regular transactions: a transaction from one account to another.
+			- Contract deployment transactions: a transaction without a 'to' address, where the data field is used for the contract code.
+			- Execution of a contract: a transaction that interacts with a deployed smart contract. In this case, 'to' address is the smart contract address.
+		- Lifecycle:
+			- generates a transaction hash
+			- transaction sent to the network and pooled with other transactions
+			- a node selects and includes the transaction in a block
+			- status moves to "justified" then "finalized"
+	- Networks
+		- Mainnet
+			- the primary public Ethereum production blockchain
+		- Testnet
+			- used by protocol developers or smart contract developers to test both protocol upgrades as well as potential smart contracts in a production-like environment before deployment to Mainnet
+
+
+# Ethereum Stack
+
+- Layer 1: EVM
+	- trufflesuite.com - a popular development framework
+	- JavaScript API libraries
+		- allows you to connect to Ethereum nodes
+		- get wallet functionality
+		- interact with smart contract functions
+		- access to QoL utility functions 
+- Layer 2: Smart Contracts
+	- can be thought of as "Open APIs" 
+	- Compiled prior to deployment to EVM
+	- cannot get information about "real-world" events
+		- use Oracles (intermediaries that can forward events / information to smart contracts from the Internet)
+	- Languages
+		- Solidity
+			- Object-oriented, high-level language
+			- Supports:
+				- Inheritance (you can extend other contracts).
+				- Libraries (you can create reusable code that you can call from different contracts – like static functions in a static class in other object oriented programming languages).
+				- Complex user-defined types.
+			- Cheat Sheet
+		- Vyper
+			- Pythonic programming language
+			- Deliberately has less features than Solidity with the aim of making contracts more secure and easier to audit
+	- Anatomy
+		- Data
+			- variables assigned either to storage or memory
+			- storage
+				- stored permanently on the blockchain
+			- memory
+				- only stored for the lifetime of a contract function's execution
+		- Functions
+			- internal functions are only accessed from within the current contract
+			- external functions are part of the contract interface, which means they can be called from other contracts and via transactions
+	- There are many open source smart contract libraries available that provide reusable building blocks for your project that can save you from having to reinvent the wheel
+- Layer 3: Ethereum Nodes
+- Layer 4: Ethereum Client APIs
+- Layer 5: End user Applications
+
+Setup local development environment: https://trufflesuite.com/
